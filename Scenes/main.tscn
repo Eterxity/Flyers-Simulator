@@ -1,16 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdup0f1rpya2o"]
+[gd_scene load_steps=7 format=3 uid="uid://cdup0f1rpya2o"]
+
+[ext_resource type="PackedScene" uid="uid://co2enm7odyawl" path="res://Scenes/player.tscn" id="1_1sthc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_86wpy"]
+sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
+sky_horizon_color = Color(0.646078, 0.655975, 0.670505, 1)
+ground_horizon_color = Color(0.646078, 0.655975, 0.670505, 1)
+
+[sub_resource type="Sky" id="Sky_xr127"]
+sky_material = SubResource("ProceduralSkyMaterial_86wpy")
+
+[sub_resource type="Environment" id="Environment_v8dyq"]
+background_mode = 2
+sky = SubResource("Sky_xr127")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ppkke"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_osds5"]
+[sub_resource type="BoxMesh" id="BoxMesh_chp0p"]
 
 [node name="Main" type="Node3D"]
+transform = Transform3D(1.00303, 0, 0, 0, 1.00303, 0, 0, 0, 1.00303, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v8dyq")
+
+[node name="Floor" type="StaticBody3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, -0.25, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_ppkke")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
-mesh = SubResource("BoxMesh_osds5")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/CollisionShape3D"]
+mesh = SubResource("BoxMesh_chp0p")
+
+[node name="Area3D" parent="." instance=ExtResource("1_1sthc")]
+Sensitivity = 0.004
