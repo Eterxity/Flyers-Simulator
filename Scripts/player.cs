@@ -45,10 +45,13 @@ public partial class player : CharacterBody3D
 
     public override void _PhysicsProcess(double delta)
 	{
-		// if (_rayCast.GetColliderShape() is CharacterBody3D)
-		// {
-		// 	GD.Print("Collided");
-		// }
+		if (_rayCast.GetCollider() is CharacterBody3D)
+		{
+			if (Input.IsActionJustPressed("handFlyer"))
+			{
+				GD.Print("Handed flyer");
+			}
+		}
 
 		Vector3 velocity = Velocity;
 		// Add the gravity.
