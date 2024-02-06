@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 
@@ -16,6 +17,8 @@ public partial class player : CharacterBody3D
 
 	public Node3D _head;
 	public Camera3D _camera;
+	public RayCast3D _rayCast;
+	public PhysicsDirectSpaceState3D _spaceState;
 
 	public override void _Ready()
 	{
@@ -23,6 +26,7 @@ public partial class player : CharacterBody3D
 
 		_head = GetNode<Node3D>("Head");
 		_camera = GetNode<Camera3D>("Head/Camera3D");
+		_rayCast = GetNode<RayCast3D>("Head/Camera3D/RayCast3D");
 	}
 
     public override void _Input(InputEvent @event)
@@ -42,7 +46,6 @@ public partial class player : CharacterBody3D
     public override void _PhysicsProcess(double delta)
 	{
 		Vector3 velocity = Velocity;
-
 		// Add the gravity.
 		if (!IsOnFloor())
 			velocity.Y -= gravity * (float)delta;
