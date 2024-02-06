@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdup0f1rpya2o"]
+[gd_scene load_steps=9 format=3 uid="uid://cdup0f1rpya2o"]
 
 [ext_resource type="PackedScene" uid="uid://co2enm7odyawl" path="res://Scenes/player.tscn" id="1_1sthc"]
+[ext_resource type="PackedScene" uid="uid://delavhyh3hy5d" path="res://Scenes/prey.tscn" id="2_gvgjy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_86wpy"]
 sky_top_color = Color(0.384314, 0.454902, 0.54902, 1)
@@ -48,3 +49,6 @@ shape = SubResource("BoxShape3D_ppkke")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/Floor/CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_chp0p")
+
+[node name="Prey" parent="." instance=ExtResource("2_gvgjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.245992, 1, -4.52534)

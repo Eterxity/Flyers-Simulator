@@ -45,6 +45,11 @@ public partial class player : CharacterBody3D
 
     public override void _PhysicsProcess(double delta)
 	{
+		// if (_rayCast.GetColliderShape() is CharacterBody3D)
+		// {
+		// 	GD.Print("Collided");
+		// }
+
 		Vector3 velocity = Velocity;
 		// Add the gravity.
 		if (!IsOnFloor())
